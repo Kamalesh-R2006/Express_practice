@@ -7,21 +7,24 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use(express.json())
 
 app.get('/', (req, res) => {
     res.send('Hello World')
 })
-
-app.use(express.json())
 
 app.get('/user/:name', (req, res) => {
     const name = req.params.name
     res.send(`Hello, ${name}!`)
 })
 
-app.post('/data', (req, res) => {       
+app.post('/data', (req, res) => {
     const receivedData = req.body
     res.json(receivedData)
+})
+
+app.use((req, res) => {
+    res.status(404).send('404 Not Found')
 })
 
 app.listen(port, () => {
