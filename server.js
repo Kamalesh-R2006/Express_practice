@@ -12,9 +12,16 @@ app.get('/', (req, res) => {
     res.send('Hello World')
 })
 
+app.use(express.json())
+
 app.get('/user/:name', (req, res) => {
     const name = req.params.name
     res.send(`Hello, ${name}!`)
+})
+
+app.post('/data', (req, res) => {       
+    const receivedData = req.body
+    res.json(receivedData)
 })
 
 app.listen(port, () => {
